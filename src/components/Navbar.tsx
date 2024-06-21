@@ -23,13 +23,15 @@ export default function Navbar(){
        	  	</div>
        	  </section>
 
-       	  <section className="felx items-center gap-8">
-       	  	<button className="h-fit rounded-xl border-2 border-neutral-200
-       	  	px-4 py-2 text-neutral-400 transition-all hover:border-black hover:text-black/90">
-       	  		Login
-       	  	</button>
+      <section className=" hidden md:flex   items-center gap-8 ">
+        <button className="h-fit text-neutral-400 transition-all hover:text-black/90">
+          Login
+        </button>
 
-       	  </section>
+        <button className="h-fit rounded-xl border-2 border-neutral-400 px-4 py-2 text-neutral-400 transition-all hover:border-black hover:text-black/90">
+          Register
+        </button>
+      </section>
        </div>
 		)
 }
