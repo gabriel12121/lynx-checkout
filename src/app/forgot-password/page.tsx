@@ -28,7 +28,7 @@ export default function ForgotPassword(){
         </Button>
       </form>
       <div className="text-center text-sm text-muted-foreground">
-        <Link href="#" className="underline underline-offset-4" prefetch={false}>
+        <Link href="/login" className="underline underline-offset-4" prefetch={false}>
           Voltar
         </Link>
       </div>

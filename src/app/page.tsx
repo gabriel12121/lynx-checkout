@@ -46,7 +46,7 @@ export default function Home() {
     </p>
 
     <div className="flex w-full pt-8">
-      <Link href="/">
+      <Link href="/register">
       <button className=" w-1/2 text-[#4328EB] flex items-center justify-center gap-x-2 ">
         Cadastrar
       </button>
