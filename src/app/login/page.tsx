@@ -9,7 +9,7 @@ export default function Login(){
       <Card className="w-full max-w-md p-6 md:p-8">
 
         <form className="space-y-4 mt-6">
-        
+
           <div className="space-y-2">
             <Label htmlFor="email">E-mail</Label>
             <Input id="email" type="email" placeholder="Digite seu e-mail" required />
@@ -17,7 +17,7 @@ export default function Login(){
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="password">Senha</Label>
-              <Link href="#" className="text-sm text-muted-foreground hover:underline" prefetch={false}>
+              <Link href="/forgot-password" className="text-sm text-muted-foreground hover:underline" prefetch={false}>
                 Esqueceu sua senha?
               </Link>
             </div>
