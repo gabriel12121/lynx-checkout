@@ -1,16 +1,53 @@
-import { BsList } from "react-icons/bs"
+import {
+CircleUser,
+  Users,Search
+} from "lucide-react"
 
+import { Button } from "@/components/ui/button"
+import MobileNav from "@/components/mobile-nav"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
 export default function Header(){
 	return(
-        <header className="fixed bg-[#31353d] w-full z-0 px-4 shadow-sm shadow-slate-500/40 pl-[20rem]">
-        	<div className="flex items-center justify-between h-16">
-        		<button className="bg-[#3e3f48] text-[#6e768e] hover:bg-white ml-3 rounded-md h-[30px] shadow-black/10 transition duration-300 ease-in-out flex items-center justify-center">
-        			<BsList></BsList>
-        		</button>
-        		<div className="h-10 w-10 rounded-full bg-[#3a3f48] flex items-center justify-center text-center">
-        			<span className="font-semibold text-sm">SR</span>
-        		</div>
-        	</div>
+        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+               <MobileNav />
+
+          <div className="w-full flex-1">
+            <form>
+              <div className="relative">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search products..."
+                  className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+                />
+              </div>
+            </form>
+          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" size="icon" className="rounded-full">
+                <CircleUser className="h-5 w-5" />
+                <span className="sr-only">Toggle user menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Logout</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </header>
 		)
 }

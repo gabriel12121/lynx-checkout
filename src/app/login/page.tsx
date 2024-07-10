@@ -4,9 +4,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
 export default function Login(){
-  const router = useRouter();
 	return(
           <div className="flex items-center justify-center min-h-[100dvh] bg-muted">
       <Card className="w-full max-w-md p-6 md:p-8">
@@ -26,8 +24,10 @@ export default function Login(){
             </div>
             <Input id="password" type="password" placeholder="Digite seu e-mail" />
           </div>
-          <Button type="submit" className="w-full" onClick={() => router.push('/dashboard')}>
+          <Button type="submit" className="w-full">
+            <Link href="/dashboard">
             Login
+            </Link>
           </Button>
         </form>
         <div className="mt-4 text-center text-sm text-muted-foreground">
