@@ -59,10 +59,10 @@ export default function Carts(){
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHeader>Data</TableHeader>
-                            <TableHeader>STATUS</TableHeader>
-                            <TableHeader>NOME DO CLIENTE</TableHeader>
-                            <TableHeader>Total</TableHeader>
+                            <TableHead>Data</TableHead>
+                            <TableHead>STATUS</TableHead>
+                            <TableHead>NOME DO CLIENTE</TableHead>
+                            <TableHead>Total</TableHead>
                         </TableRow>
                     </TableHeader>
                 </Table>
