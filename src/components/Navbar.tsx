@@ -52,10 +52,28 @@ export default function Navbar(){
 
               </Link>
               <Link
+                href="/pedido"
+                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+              >
+                Pedidos
+              </Link>
+              <Link
                 href="/cupon"
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
               >
                 Cupons
+              </Link>
+              <Link
+                href="/app"
+                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+              >
+                App
+              </Link>
+              <Link
+                href="/gateway"
+                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+              >
+                Gateway
               </Link>
               <Link
                 href="/leads"
