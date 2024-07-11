@@ -44,57 +44,26 @@ export default function Navbar(){
                 Dashboard
               </Link>
               <Link
-                href=""
+                href="/cliente"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <ShoppingCart className="h-4 w-4" />
-                Orders
+                Clientes
 
               </Link>
               <Link
-                href="#"
+                href="/cupon"
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-              >
-                Products{" "}
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                <Users className="h-4 w-4" />
-                Customers
-              </Link>
-          <Collapsible className="group">
-            <CollapsibleTrigger className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted group-[.open]:bg-muted">
-              <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" prefetch={false}>
-                Marketing
-              </Link>
-              <ChevronDown className="h-4 w-4 transition-transform group-[.open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-1 pl-6">
-              <Link
-                href="#"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
               >
                 Cupons
               </Link>
               <Link
-                href="#"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
+                href="/leads"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                Upseil
+                <Users className="h-4 w-4" />
+                Leads
               </Link>
-              <Link
-                href="#"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
-              >
-                Order Bummp
-              </Link>
-            </CollapsibleContent>
-          </Collapsible>
                     <Collapsible className="group">
             <CollapsibleTrigger className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted group-[.open]:bg-muted">
               <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" prefetch={false}>
@@ -104,21 +73,21 @@ export default function Navbar(){
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-1 pl-6">
               <Link
-                href="#"
+                href="recover/pix"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 prefetch={false}
               >
                 Pix
               </Link>
               <Link
-                href="#"
+                href="recover/billet"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 prefetch={false}
               >
                 Boleto
               </Link>
               <Link
-                href="#"
+                href="recover/carts"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 prefetch={false}
               >
