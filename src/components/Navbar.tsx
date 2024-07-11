@@ -73,24 +73,18 @@ export default function Navbar(){
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-1 pl-6">
               <Link
-                href="recover/pix"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
-              >
+                href="/recover/pix"
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted">
                 Pix
               </Link>
               <Link
-                href="recover/billet"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
-              >
+                href="/recover/billet"
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted">
                 Boleto
               </Link>
               <Link
-                href="recover/carts"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
-              >
+                href="/recover/carts"
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted">
                 Carrinho
               </Link>
             </CollapsibleContent>
