@@ -11,14 +11,13 @@ import {
 import { Button } from "@/components/ui/button"
 import {
   Bell,
-  CircleUser,
   Home,
   LineChart,
-  Menu,
   Package2,
-  Search,
   ShoppingCart,
   Users,
+  ChevronDown,
+  Menu
 } from "lucide-react"
 import {
   Card,
@@ -27,6 +26,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+
 export default function  MobileNav(){
   return(
 <Sheet>
@@ -84,27 +84,43 @@ export default function  MobileNav(){
                   <LineChart className="h-5 w-5" />
                   Cupon
                 </Link>
+
                 <Link
-                  href="/cupon"
-                  className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
-                >
-                  <LineChart className="h-5 w-5" />
-                  App
-                </Link>
-                <Link
-                  href="/cupon"
+                  href="/gateway"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <LineChart className="h-5 w-5" />
                   Gateway
                 </Link>
                 <Link
-                  href="/leads"
+                  href="/leds"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <LineChart className="h-5 w-5" />
                   Leads
                 </Link>
+                              <Link
+                href="setting/logistic"
+                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
+                prefetch={false}
+              >
+                Logistica
+              </Link>
+                            <Link
+                href="/recover/pix"
+                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
+                Pix
+              </Link>
+              <Link
+                href="/recover/billet"
+                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
+                Boleto
+              </Link>
+              <Link
+                href="/recover/carts"
+                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
+                Carrinho
+              </Link>
               </nav>
             </SheetContent>
           </Sheet>
