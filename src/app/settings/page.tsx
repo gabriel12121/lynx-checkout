@@ -1,7 +1,24 @@
+
+
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+
+
 export default function Setting(){
 	return(
-		<h2 className="text-3xl font-bold tracking-tight my-4">Dashboard</h2>
+		
 <>
+<h2 className="text-3xl font-bold tracking-tight my-4">Dashboard</h2>
 		<div className="grid gap-6">
             <Card x-chunk="dashboard-04-chunk-1">
               <CardHeader>
@@ -34,7 +51,6 @@ export default function Setting(){
                     defaultValue="/content/plugins"
                   />
                   <div className="flex items-center space-x-2">
-                    <Checkbox id="include" defaultChecked />
                     <label
                       htmlFor="include"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
