@@ -1,5 +1,5 @@
 "use client"
-import { TrendingUp,DollarSign } from "lucide-react"
+import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import {
   Card,
@@ -16,12 +16,12 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Janeiro", desktop: 186, mobile: 80 },
+  { month: "Fevereiro", desktop: 305, mobile: 200 },
+  { month: "Março", desktop: 237, mobile: 120 },
+  { month: "Abril", desktop: 73, mobile: 190 },
+  { month: "Maio", desktop: 209, mobile: 130 },
+  { month: "Junho", desktop: 214, mobile: 140 },
 ]
 const chartConfig = {
   desktop: {
@@ -37,44 +37,36 @@ export default function Dashboard(){
     return(
         <>
         <h1 className="text-lg font-semibold md:text-2xl">Dashboard</h1>
-        <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+       <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <Card>
             <CardHeader>
-               <CardTitle>Total</CardTitle>
-               <DollarSign className="h-4 w-4 text-green-500" />
+               <CardTitle>Venda Totais</CardTitle>
+               
             </CardHeader>
             <CardContent>
               <p className="text-2x1 font-bold">R$100.000</p>
-              <p className="text-xs text-muted-foreground">Based on 100 charges</p>
             </CardContent>
           </Card>
            <Card>
             <CardHeader>
-               <CardTitle>Total</CardTitle>
-               <DollarSign className="h-4 w-4 text-green-500" />
+               <CardTitle>Pedido Pagos</CardTitle>
+               
             </CardHeader>
             <CardContent>
-              <p className="text-2x1 font-bold">R$100.000</p>
-              <p className="text-xs text-muted-foreground">Based on 100 charges</p>
+              <p className="text-2x1 font-bold">R$0,00</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader>
-               <CardTitle>Total</CardTitle>
-               <DollarSign className="h-4 w-4 text-green-500" />
+               <CardTitle>Lucro liquido</CardTitle>
+               
             </CardHeader>
             <CardContent>
-              <p className="text-2x1 font-bold">R$100.000</p>
-              <p className="text-xs text-muted-foreground">Based on 100 charges</p>
+              <p className="text-2x1 font-bold">0,00%</p>
             </CardContent>
           </Card>
-          
         </div>
         <Card className='col-span-1 lg:col-span-4'>
-      <CardHeader>
-        <CardTitle>Bar Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>

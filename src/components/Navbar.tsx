@@ -81,7 +81,7 @@ export default function Navbar(){
                 Gateway
               </Link>
               <Link
-                href="/leads"
+                href="/leds"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 <Users className="h-4 w-4" />
@@ -128,18 +128,25 @@ export default function Navbar(){
                 Geral
               </Link>
               <Link
-                href="#"
+                href="/logistic"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 prefetch={false}
               >
-                Fulfillment
+                Logistica
               </Link>
               <Link
-                href="#"
+                href="/gateway"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 prefetch={false}
               >
-                Returns
+                Pagamentos
+              </Link>
+                            <Link
+                href="/app"
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                prefetch={false}
+              >
+                Integrações
               </Link>
             </CollapsibleContent>
           </Collapsible>
@@ -148,7 +155,6 @@ export default function Navbar(){
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
                 Faturamento
-
               </Link>
             </nav>
           </div>

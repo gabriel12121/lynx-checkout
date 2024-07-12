@@ -25,7 +25,7 @@ export default function Carts(){
         <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <Card>
             <CardHeader>
-               <CardTitle>Total em Recuperação</CardTitle>
+               <CardTitle>Total Abandono</CardTitle>
                <DollarSign className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
