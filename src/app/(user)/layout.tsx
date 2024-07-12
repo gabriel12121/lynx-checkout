@@ -8,6 +8,8 @@ import {
   ShoppingCart,
   Users,
   ChevronDown,
+  CircleUser ,
+  PackageSearch,
 } from "lucide-react"
 import {
   Card,
@@ -55,7 +57,7 @@ export default function User({
                 href="/cliente"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <ShoppingCart className="h-4 w-4" />
+                <CircleUser  className="h-4 w-4" />
                 Clientes
 
               </Link>
@@ -63,12 +65,14 @@ export default function User({
                 href="/pedido"
                 className="flex items-center gap-3 rounded-lg  px-3 py-2 text-primary transition-all hover:text-primary"
               >
+              <PackageSearch className="h-4 w-4" />
                 Pedidos
               </Link>
               <Link
                 href="/produto"
                 className="flex items-center gap-3 rounded-lg  px-3 py-2 text-primary transition-all hover:text-primary"
               >
+                <ShoppingCart className="h-4 w-4" />
                 Produtos
               </Link>
               <Link
