@@ -68,12 +68,7 @@ export default function Navbar(){
               >
                 Cupons
               </Link>
-              <Link
-                href="/app"
-                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
-              >
-                App
-              </Link>
+
               <Link
                 href="/gateway"
                 className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
@@ -128,7 +123,7 @@ export default function Navbar(){
                 Geral
               </Link>
               <Link
-                href="/logistic"
+                href="setting/logistic"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
                 prefetch={false}
               >
