@@ -16,7 +16,7 @@ export default function Gateway(){
        <div className="flex flex-col items-start gap-4 rounded-lg border bg-background p-6 shadow-sm transition-all hover:shadow-md">
          <div className="flex items-center gap-4">
            <div className=" p-3 text-primary-foreground">
-<Image src={Mercadopago} alt="logo" width={74} height={29} />
+              <Image src={Mercadopago} alt="logo" width={74} height={29} />
            </div>
            <h3 className="text-xl font-semibold">Mercado Pago</h3>
          </div>
@@ -24,7 +24,7 @@ export default function Gateway(){
        </div>
        <div className="flex flex-col items-start gap-4 rounded-lg border bg-background p-6 shadow-sm transition-all hover:shadow-md">
          <div className="flex items-center gap-4">
-<Image src={Shopify} alt="logo" width={74} height={29} />
+            <Image src={Shopify} alt="logo" width={74} height={29} />
            <h3 className="text-xl font-semibold">Shopify</h3>
          </div>
          <p className="text-muted-foreground">Plataforma global de e-commerce.</p>
