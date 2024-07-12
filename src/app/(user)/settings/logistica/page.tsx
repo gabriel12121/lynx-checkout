@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-export default function Logistic(){
+export default function Logistica(){
     return(
     <>
             <div className="flex items-center gap-4">

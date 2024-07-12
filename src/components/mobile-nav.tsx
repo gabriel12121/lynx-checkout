@@ -100,7 +100,7 @@ export default function  MobileNav(){
                   Leads
                 </Link>
                               <Link
-                href="setting/logistic"
+                href="/settings/logistica"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 prefetch={false}
               >

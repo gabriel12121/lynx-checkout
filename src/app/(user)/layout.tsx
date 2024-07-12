@@ -93,7 +93,7 @@ export default function User({
               </Link>
                     <Collapsible className="group">
             <CollapsibleTrigger className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted group-[.open]:bg-muted">
-              <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" prefetch={false}>
+              <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" >
                 Recuperação
               </Link>
               <ChevronDown className="h-4 w-4 transition-transform group-[.open]:rotate-180" />
@@ -118,7 +118,7 @@ export default function User({
           </Collapsible>
                     <Collapsible className="group">
             <CollapsibleTrigger className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted group-[.open]:bg-muted">
-              <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" prefetch={false}>
+              <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" >
                 Configurações
               </Link>
               <ChevronDown className="h-4 w-4 transition-transform group-[.open]:rotate-180" />
@@ -127,28 +127,28 @@ export default function User({
               <Link
                 href="/setting/geral"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
+                
               >
                 Geral
               </Link>
               <Link
-                href="setting/logistic"
+                href="settings/logistica"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
+                
               >
                 Logistica
               </Link>
               <Link
                 href="/gateway"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
+                
               >
                 Pagamentos
               </Link>
                             <Link
                 href="/app"
                 className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                prefetch={false}
+                
               >
                 Integrações
               </Link>
