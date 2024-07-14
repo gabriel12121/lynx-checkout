@@ -1,3 +1,4 @@
+"use client"
 import db from "../../db/drizzle";
 import { users } from "../../db/schema";
 import { genSaltSync, hashSync } from "bcrypt-ts";
@@ -10,9 +11,13 @@ export const usersRouter = router({
     return await db.select().from(users).orderBy(asc(users.id));
   }),
   create: publicProcedure.input(z.object({
+    clerkId: z.string(),
     username: z.string(),
     email: z.string().email(),
     password: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    photo: z.string()
   })).mutation(async (opts) => {
     const { input } = opts;
     console.log(input);
@@ -21,9 +26,13 @@ export const usersRouter = router({
     const hash = hashSync(input.password, salt);
 
     await db.insert(users).values({
+      clerkId: input.clerkId,
       username: input.username,
       email: input.email,
+      firstName: input.firstName,
+      lastName: input.lastName,
       password: hash,
+      photo: input.photo
     });
   })
 });
