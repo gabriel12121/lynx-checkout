@@ -22,7 +22,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { trpc } from "../../../server/client";
+
 
 const formSchema = z.object({
   email: z.string().email(),
