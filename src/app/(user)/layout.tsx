@@ -120,7 +120,32 @@ export default function User({
               </Link>
             </CollapsibleContent>
           </Collapsible>
-                    <Collapsible className="group">
+          <Collapsible className="group">
+            <CollapsibleTrigger className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted group-[.open]:bg-muted">
+              <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" >
+                Sua Loja
+              </Link>
+              <ChevronDown className="h-4 w-4 transition-transform group-[.open]:rotate-180" />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="space-y-1 pl-6">
+              <Link
+                href=""
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted">
+                Personalizar Checkout
+              </Link>
+              <Link
+                href=""
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted">
+                Customizar Dominio
+              </Link>
+              <Link
+                href="/recover/carts"
+                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted">
+                Customizar Frete
+              </Link>
+            </CollapsibleContent>
+          </Collapsible>
+          <Collapsible className="group">
             <CollapsibleTrigger className="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted group-[.open]:bg-muted">
               <Link href="#" className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary" >
                 Configurações
@@ -157,6 +182,7 @@ export default function User({
                 Integrações
               </Link>
             </CollapsibleContent>
+            
           </Collapsible>
                         <Link
                 href=""

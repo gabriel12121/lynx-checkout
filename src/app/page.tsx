@@ -2,13 +2,7 @@
 import Hero from "@/assets/hero.png";
 import Link from "next/link"
 import Image from "next/image";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+
 export default function Home() {
   return (
     <>
@@ -52,12 +46,12 @@ export default function Home() {
     </p>
 
     <div className="flex w-full pt-8">
-      <Link href="/sign-in">
+      <Link href="/register">
       <button className=" w-1/2 text-[#4328EB] flex items-center justify-center gap-x-2 ">
         Cadastrar
       </button>
       </Link>
-      <Link href="/sign-up">
+      <Link href="/login">
       <button className="  w-1/2 text-[#4328EB] flex items-center justify-center gap-x-2">
         Login
       </button>
