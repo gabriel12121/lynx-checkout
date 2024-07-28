@@ -83,10 +83,10 @@ export default function User({
               </Link>
 
               <Link
-                href="/gateway"
+                href="/app"
                 className="flex items-center gap-3 rounded-lg  px-3 py-2 text-primary transition-all hover:text-primary"
               >
-                Gateway
+                Integrações
               </Link>
               <Link
                 href="/leds"
@@ -167,29 +167,11 @@ export default function User({
               >
                 Logistica
               </Link>
-              <Link
-                href="/gateway"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                
-              >
-                Pagamentos
-              </Link>
-                            <Link
-                href="/app"
-                className="flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
-                
-              >
-                Integrações
-              </Link>
+ 
             </CollapsibleContent>
             
           </Collapsible>
-                        <Link
-                href=""
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
-                Faturamento
-              </Link>
+                 
             </nav>
           </div>
 
