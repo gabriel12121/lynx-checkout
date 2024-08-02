@@ -51,7 +51,7 @@ export default function  MobileNav(){
                   href="#"
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
-                  <span className="sr-only">Lynx Checkout</span>
+                  <span className="sr-only"></span>
                 </Link>
                 <Link
                   href="/dashboard"
