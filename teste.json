@@ -1,0 +1,227 @@
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "name": "WhatsApp Incoming",
+      "type": "n8n-nodes-base.twilioTrigger",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "webhookId": "your-webhook-id"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"WhatsApp Incoming\"].json[\"Body\"]}}",
+              "operation": "matches",
+              "value2": "/[A-Za-z]{2}[0-9]{9}[A-Za-z]{2}/"
+            }
+          ]
+        }
+      },
+      "name": "Filtro Código Correios",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "key": "={{$node[\"WhatsApp Incoming\"].json[\"Body\"]}}"
+      },
+      "name": "Verificar Cache",
+      "type": "n8n-nodes-base.cache",
+      "typeVersion": 1,
+      "position": [800, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$node[\"Verificar Cache\"].json[\"value\"]}}",
+              "operation": "notExists"
+            }
+          ]
+        }
+      },
+      "name": "Dados em Cache?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [950, 200]
+    },
+    {
+      "parameters": {
+        "url": "https://api.linketrack.com/track/json",
+        "options": {
+          "qs": {
+            "user": "seu-usuario",
+            "token": "seu-token",
+            "codigo": "={{$node[\"WhatsApp Incoming\"].json[\"Body\"]}}"
+          }
+        }
+      },
+      "name": "API Correios",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1100, 100]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "={{$node[\"WhatsApp Incoming\"].json[\"Body\"]}}",
+        "value": "={{JSON.stringify($node[\"API Correios\"].json)}}",
+        "ttl": 3600
+      },
+      "name": "Armazenar no Cache",
+      "type": "n8n-nodes-base.cache",
+      "typeVersion": 1,
+      "position": [1300, 100]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Usar dados do cache ou da API\nlet dados;\n\nif ($node[\"Verificar Cache\"].json[\"value\"] && !$node[\"Dados em Cache?\"].json[\"value\"]) {\n  dados = JSON.parse($node[\"Verificar Cache\"].json[\"value\"]);\n} else {\n  dados = $node[\"API Correios\"].json;\n}\n\n// Processar status\nconst eventos = dados.eventos || [];\nlet status = \"Pendente\";\n\nif (eventos.some(e => e.status && e.status.includes(\"entregue\"))) {\n  status = \"Chegou 🎉\";\n} else if (eventos.some(e => e.status && e.status.includes(\"em trânsito\"))) {\n  status = \"Enviada ✈️\";\n} else if (eventos.length > 0) {\n  status = \"Processando 📦\";\n}\n\n// Formatar última atualização\nconst ultimoEvento = eventos[0] || {};\nconst detalhes = ultimoEvento.data ? `\\nÚltima atualização: ${ultimoEvento.data} - ${ultimoEvento.local}` : '';\n\nreturn [{ json: { \n  status: `${status}${detalhes}`,\n  from: $node[\"WhatsApp Incoming\"].json[\"From\"],\n  codigo: $node[\"WhatsApp Incoming\"].json[\"Body\"]\n} }];",
+        "output": "auto"
+      },
+      "name": "Processar Status",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1100, 300]
+    },
+    {
+      "parameters": {
+        "from": "seu-numero-whatsapp",
+        "to": "={{$node[\"Processar Status\"].json[\"from\"]}}",
+        "body": "Status do código *{{$node[\"Processar Status\"].json[\"codigo\"]}}*:\n\n{{$node[\"Processar Status\"].json[\"status\"]}}"
+      },
+      "name": "WhatsApp Response",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [1300, 300]
+    },
+    {
+      "parameters": {
+        "to": "={{$node[\"WhatsApp Incoming\"].json[\"From\"]}}",
+        "body": "⚠️ Código de rastreamento inválido. Por favor, envie um código válido dos Correios no formato:\n\n*AA123456789BR*\n\nOu visite o site oficial: https://www.correios.com.br"
+      },
+      "name": "Mensagem Inválida",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [850, 400]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Incoming",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Incoming": {
+      "main": [
+        [
+          {
+            "node": "Filtro Código Correios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtro Código Correios": {
+      "main": [
+        [
+          {
+            "node": "Verificar Cache",
+            "type": "if",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mensagem Inválida",
+            "type": "else",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar Cache": {
+      "main": [
+        [
+          {
+            "node": "Dados em Cache?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados em Cache?": {
+      "main": [
+        [
+          {
+            "node": "API Correios",
+            "type": "if",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Processar Status",
+            "type": "else",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API Correios": {
+      "main": [
+        [
+          {
+            "node": "Armazenar no Cache",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armazenar no Cache": {
+      "main": [
+        [
+          {
+            "node": "Processar Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Processar Status": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
