@@ -1,0 +1,108 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "receber-mensagem"
+      },
+      "name": "Receber Mensagem WhatsApp",
+      "type": "n8n-nodes-base.webhook"
+    },
+    {
+      "parameters": {
+        "url": "https://api.meusistema.com/verificar-estoque",
+        "method": "GET",
+        "queryParameters": [
+          {
+            "name": "produto_id",
+            "value": "={{$json[\"mensagem\"]}}"
+          }
+        ]
+      },
+      "name": "Verificar Estoque",
+      "type": "n8n-nodes-base.httpRequest"
+    },
+    {
+      "parameters": {
+        "condition": {
+          "rules": [
+            {
+              "value1": "={{$node[\"Verificar Estoque\"].json[\"disponivel\"]}}",
+              "operation": "true"
+            }
+          ]
+        }
+      },
+      "name": "Produto Disponível?",
+      "type": "n8n-nodes-base.if"
+    },
+    {
+      "parameters": {
+        "url": "https://api.pagamento.com/gerar-link",
+        "method": "POST",
+        "bodyParametersJson": "{\"valor\": 100, \"produto\": {{$json[\"mensagem\"]}}}"
+      },
+      "name": "Gerar Link de Pagamento",
+      "type": "n8n-nodes-base.httpRequest"
+    },
+    {
+      "parameters": {
+        "text": "Aqui está seu link de pagamento: {{$node[\"Gerar Link de Pagamento\"].json[\"url\"]}}"
+      },
+      "name": "Enviar Link Pagamento",
+      "type": "n8n-nodes-base.whatsapp"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "confirmar-pagamento"
+      },
+      "name": "Webhook Pagamento",
+      "type": "n8n-nodes-base.webhook"
+    },
+    {
+      "parameters": {
+        "text": "Pagamento confirmado! Seu pedido está sendo processado."
+      },
+      "name": "Confirmar Pedido",
+      "type": "n8n-nodes-base.whatsapp"
+    },
+    {
+      "parameters": {
+        "waitTime": "3d"
+      },
+      "name": "Aguardar 3 Dias",
+      "type": "n8n-nodes-base.wait"
+    },
+    {
+      "parameters": {
+        "text": "Esperamos que tenha gostado da compra! Avalie nosso atendimento."
+      },
+      "name": "Enviar Feedback",
+      "type": "n8n-nodes-base.whatsapp"
+    }
+  ],
+  "connections": {
+    "Receber Mensagem WhatsApp": {
+      "main": [[{"node": "Verificar Estoque"}]]
+    },
+    "Verificar Estoque": {
+      "main": [[{"node": "Produto Disponível?"}]]
+    },
+    "Produto Disponível?": {
+      "main": [[{"node": "Gerar Link de Pagamento", "index": 0}]]
+    },
+    "Gerar Link de Pagamento": {
+      "main": [[{"node": "Enviar Link Pagamento"}]]
+    },
+    "Webhook Pagamento": {
+      "main": [[{"node": "Confirmar Pedido"}]]
+    },
+    "Confirmar Pedido": {
+      "main": [[{"node": "Aguardar 3 Dias"}]]
+    },
+    "Aguardar 3 Dias": {
+      "main": [[{"node": "Enviar Feedback"}]]
+    }
+  }
+}
