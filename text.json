@@ -11,108 +11,62 @@
     },
     {
       "parameters": {
-        "url": "https://api.meusistema.com/verificar-estoque",
-        "method": "GET",
-        "queryParameters": [
-          {
-            "name": "produto_id",
-            "value": "={{$json[\"mensagem\"]}}"
-          }
-        ]
+        "conditions": {
+          "any": [
+            { "value1": "={{$json[\"mensagem\"]}}", "operation": "contains", "value2": "suporte" },
+            { "value1": "={{$json[\"mensagem\"]}}", "operation": "contains", "value2": "pedido" },
+            { "value1": "={{$json[\"mensagem\"]}}", "operation": "contains", "value2": "pagamento" }
+          ]
+        }
       },
-      "name": "Verificar Estoque",
-      "type": "n8n-nodes-base.httpRequest",
+      "name": "Identificar Tipo de Solicitação",
+      "type": "n8n-nodes-base.switch",
       "position": [400, 300]
     },
     {
       "parameters": {
-        "conditions": {
-          "all": [
-            {
-              "value1": "={{$json[\"disponivel\"]}}",
-              "operation": "isTrue"
-            }
-          ]
-        }
+        "text": "Como posso te ajudar com o suporte?"
       },
-      "name": "Produto Disponível?",
-      "type": "n8n-nodes-base.if",
+      "name": "Resposta Suporte",
+      "type": "n8n-nodes-base.whatsapp",
+      "position": [600, 200]
+    },
+    {
+      "parameters": {
+        "text": "Gostaria de saber sobre seu pedido? Informe seu número de pedido."
+      },
+      "name": "Resposta Pedido",
+      "type": "n8n-nodes-base.whatsapp",
       "position": [600, 300]
     },
     {
       "parameters": {
-        "url": "https://api.pagamento.com/gerar-link",
-        "method": "POST",
-        "jsonParameters": true,
-        "bodyParametersJson": "{\"valor\": 100, \"produto\": {{$json[\"mensagem\"]}}}"
+        "text": "Deseja informações sobre pagamento? Podemos te ajudar com boleto, cartão e outros métodos."
       },
-      "name": "Gerar Link de Pagamento",
-      "type": "n8n-nodes-base.httpRequest",
-      "position": [800, 300]
-    },
-    {
-      "parameters": {
-        "text": "Aqui está seu link de pagamento: {{$json[\"url\"]}}"
-      },
-      "name": "Enviar Link Pagamento",
+      "name": "Resposta Pagamento",
       "type": "n8n-nodes-base.whatsapp",
-      "position": [1000, 300]
+      "position": [600, 400]
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "confirmar-pagamento"
+        "text": "Não entendi sua solicitação. Vou encaminhar para um atendente humano."
       },
-      "name": "Webhook Pagamento",
-      "type": "n8n-nodes-base.webhook",
-      "position": [1200, 300]
-    },
-    {
-      "parameters": {
-        "text": "Pagamento confirmado! Seu pedido está sendo processado."
-      },
-      "name": "Confirmar Pedido",
+      "name": "Encaminhar para Atendente",
       "type": "n8n-nodes-base.whatsapp",
-      "position": [1400, 300]
-    },
-    {
-      "parameters": {
-        "waitTime": "3d"
-      },
-      "name": "Aguardar 3 Dias",
-      "type": "n8n-nodes-base.wait",
-      "position": [1600, 300]
-    },
-    {
-      "parameters": {
-        "text": "Esperamos que tenha gostado da compra! Avalie nosso atendimento."
-      },
-      "name": "Enviar Feedback",
-      "type": "n8n-nodes-base.whatsapp",
-      "position": [1800, 300]
+      "position": [600, 500]
     }
   ],
   "connections": {
     "Receber Mensagem WhatsApp": {
-      "main": [[{"node": "Verificar Estoque", "index": 0}]]
+      "main": [[{"node": "Identificar Tipo de Solicitação", "index": 0}]]
     },
-    "Verificar Estoque": {
-      "main": [[{"node": "Produto Disponível?", "index": 0}]]
-    },
-    "Produto Disponível?": {
-      "main": [[{"node": "Gerar Link de Pagamento", "index": 0}]]
-    },
-    "Gerar Link de Pagamento": {
-      "main": [[{"node": "Enviar Link Pagamento", "index": 0}]]
-    },
-    "Webhook Pagamento": {
-      "main": [[{"node": "Confirmar Pedido", "index": 0}]]
-    },
-    "Confirmar Pedido": {
-      "main": [[{"node": "Aguardar 3 Dias", "index": 0}]]
-    },
-    "Aguardar 3 Dias": {
-      "main": [[{"node": "Enviar Feedback", "index": 0}]]
+    "Identificar Tipo de Solicitação": {
+      "main": [
+        [{"node": "Resposta Suporte", "index": 0}],
+        [{"node": "Resposta Pedido", "index": 1}],
+        [{"node": "Resposta Pagamento", "index": 2}],
+        [{"node": "Encaminhar para Atendente", "index": 3}]
+      ]
     }
   }
 }
