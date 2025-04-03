@@ -6,7 +6,8 @@
         "path": "receber-mensagem"
       },
       "name": "Receber Mensagem WhatsApp",
-      "type": "n8n-nodes-base.webhook"
+      "type": "n8n-nodes-base.webhook",
+      "position": [200, 300]
     },
     {
       "parameters": {
@@ -20,37 +21,42 @@
         ]
       },
       "name": "Verificar Estoque",
-      "type": "n8n-nodes-base.httpRequest"
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [400, 300]
     },
     {
       "parameters": {
-        "condition": {
-          "rules": [
+        "conditions": {
+          "all": [
             {
-              "value1": "={{$node[\"Verificar Estoque\"].json[\"disponivel\"]}}",
-              "operation": "true"
+              "value1": "={{$json[\"disponivel\"]}}",
+              "operation": "isTrue"
             }
           ]
         }
       },
       "name": "Produto Disponível?",
-      "type": "n8n-nodes-base.if"
+      "type": "n8n-nodes-base.if",
+      "position": [600, 300]
     },
     {
       "parameters": {
         "url": "https://api.pagamento.com/gerar-link",
         "method": "POST",
+        "jsonParameters": true,
         "bodyParametersJson": "{\"valor\": 100, \"produto\": {{$json[\"mensagem\"]}}}"
       },
       "name": "Gerar Link de Pagamento",
-      "type": "n8n-nodes-base.httpRequest"
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [800, 300]
     },
     {
       "parameters": {
-        "text": "Aqui está seu link de pagamento: {{$node[\"Gerar Link de Pagamento\"].json[\"url\"]}}"
+        "text": "Aqui está seu link de pagamento: {{$json[\"url\"]}}"
       },
       "name": "Enviar Link Pagamento",
-      "type": "n8n-nodes-base.whatsapp"
+      "type": "n8n-nodes-base.whatsapp",
+      "position": [1000, 300]
     },
     {
       "parameters": {
@@ -58,51 +64,55 @@
         "path": "confirmar-pagamento"
       },
       "name": "Webhook Pagamento",
-      "type": "n8n-nodes-base.webhook"
+      "type": "n8n-nodes-base.webhook",
+      "position": [1200, 300]
     },
     {
       "parameters": {
         "text": "Pagamento confirmado! Seu pedido está sendo processado."
       },
       "name": "Confirmar Pedido",
-      "type": "n8n-nodes-base.whatsapp"
+      "type": "n8n-nodes-base.whatsapp",
+      "position": [1400, 300]
     },
     {
       "parameters": {
         "waitTime": "3d"
       },
       "name": "Aguardar 3 Dias",
-      "type": "n8n-nodes-base.wait"
+      "type": "n8n-nodes-base.wait",
+      "position": [1600, 300]
     },
     {
       "parameters": {
         "text": "Esperamos que tenha gostado da compra! Avalie nosso atendimento."
       },
       "name": "Enviar Feedback",
-      "type": "n8n-nodes-base.whatsapp"
+      "type": "n8n-nodes-base.whatsapp",
+      "position": [1800, 300]
     }
   ],
   "connections": {
     "Receber Mensagem WhatsApp": {
-      "main": [[{"node": "Verificar Estoque"}]]
+      "main": [[{"node": "Verificar Estoque", "index": 0}]]
     },
     "Verificar Estoque": {
-      "main": [[{"node": "Produto Disponível?"}]]
+      "main": [[{"node": "Produto Disponível?", "index": 0}]]
     },
     "Produto Disponível?": {
       "main": [[{"node": "Gerar Link de Pagamento", "index": 0}]]
     },
     "Gerar Link de Pagamento": {
-      "main": [[{"node": "Enviar Link Pagamento"}]]
+      "main": [[{"node": "Enviar Link Pagamento", "index": 0}]]
     },
     "Webhook Pagamento": {
-      "main": [[{"node": "Confirmar Pedido"}]]
+      "main": [[{"node": "Confirmar Pedido", "index": 0}]]
     },
     "Confirmar Pedido": {
-      "main": [[{"node": "Aguardar 3 Dias"}]]
+      "main": [[{"node": "Aguardar 3 Dias", "index": 0}]]
     },
     "Aguardar 3 Dias": {
-      "main": [[{"node": "Enviar Feedback"}]]
+      "main": [[{"node": "Enviar Feedback", "index": 0}]]
     }
   }
 }
